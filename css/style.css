@@ -12,6 +12,7 @@ body {
   background-color: black;
   color: white;
   overflow-x: hidden;
+  min-width: 320px;
 }
 
 #navbar {
@@ -21,7 +22,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 50px;
+  padding: 0 clamp(20px, 5vw, 50px);
   position: fixed;
   z-index: 4;
 }
@@ -33,50 +34,110 @@ body {
 }
 
 #valo-logo {
-  height: 60px;
+  height: clamp(40px, 8vw, 60px);
 }
 
 #logo_name {
-  font-size: 30px;
+  font-size: clamp(18px, 3vw, 30px);
   text-decoration: none;
-  background: linear-gradient(to right, #ff1212, rgb(78, 0, 247), blue);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: red;
   font-weight: bold;
 }
 
 #nav-links {
   display: flex;
-  gap: 120px;
+  gap: clamp(20px, 8vw, 120px);
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .bar-options {
-
   color: white;
   text-decoration: none;
-  font-size: 30px;
+  font-size: clamp(16px, 2.5vw, 30px);
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .bar-options:hover {
   color: red;
-  font-size: 34px;
+  transform: scale(1.1);
+}
+
+
+.modal-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.3);
+  pointer-events: none;
+
+
+}
+
+.modal{
+  background-color: grey;
+  color: rgb(255, 255, 255);
+  border-radius: 50px;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+  padding: 30px;
+  width: 500px;
+  
+  max-width: 100%;
+  text-align: center;
+
+}
+.modal-container.show{
+  pointer-events: auto;
+  opacity: 1;
+  z-index: 999;
+}
+
+.modal h1 {
+  font-weight: 700;
+  color: white;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 5px 0px black;
+}
+
+
+
+.modal button {
+  margin-top: 20px;
+  width: 100%;
+  background: #ff4655;
+  color: #fff;
+  padding: 12px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
 
 section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  padding: 100px 20px 40px;
 }
 
 .text{
-  font-size: 2em;
+  font-size: clamp(1em, 2vw, 2em);
 }
 
 #video-section {
@@ -95,50 +156,57 @@ section {
 
 .overlay-content {
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 60px;
+  padding: clamp(30px, 6vw, 60px);
   border-radius: 10px;
+  max-width: 90%;
 }
 
 .overlay-content h2 {
-  font-size: 38px;
+  font-size: clamp(24px, 4vw, 38px);
   margin-bottom: 15px;
 }
 
 .overlay-content p {
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
 }
 
 
 .section-content {
-  width: 80%;
+  width: 90%;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
 .section-content .text {
-  width: 45%;
+  flex: 1;
+  min-width: 300px;
 }
 
 .section-content .image {
-  width: 400px;
+  flex: 1;
   display: flex;
   justify-content: center;
   gap: 10px;
+  min-width: 300px;
 }
 
 .section-content .image img {
-  height: 600px;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
   border-radius: 8px;
 }
 
 
 #agents {
- 
   background-image: url(../agents_coverpage.png);
   background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #agent_btn {
@@ -146,16 +214,17 @@ section {
   text-decoration: none;
   background-color: black;
   color: white;
-  padding: 10px 16px;
+  padding: clamp(8px, 1.5vw, 10px) clamp(12px, 2vw, 16px);
   border-radius: 5px;
   margin-bottom: 20px;
   transition: 0.3s;
+  font-size: clamp(14px, 1.8vw, 18px);
 }
 
 #agent_btn:hover {
   background-color: white;
   color: black;
-  font-size: 1.2em;
+  transform: scale(1.05);
 }
 
 
@@ -168,16 +237,17 @@ section {
   text-decoration: none;
   background-color: red;
   color: white;
-  padding: 10px 16px;
+  padding: clamp(8px, 1.5vw, 10px) clamp(12px, 2vw, 16px);
   border-radius: 5px;
   margin-top: 20px;
   transition: 0.3s;
+  font-size: clamp(14px, 1.8vw, 18px);
 }
 
 #maps_btn:hover {
   background-color: white;
   color: black;
-  font-size: 1.2em;
+  transform: scale(1.05);
 }
 
 
@@ -202,16 +272,17 @@ section {
   text-decoration: none;
   background-color: red;
   color: white;
-  padding: 10px 16px;
+  padding: clamp(8px, 1.5vw, 10px) clamp(12px, 2vw, 16px);
   border-radius: 5px;
   margin-top: 20px;
   transition: 0.3s;
+  font-size: clamp(14px, 1.8vw, 18px);
 }
 
 #weapons_btn:hover {
   background-color: white;
   color: black;
-  font-size: 1.2em;
+  transform: scale(1.05);
 }
 
 
@@ -219,13 +290,183 @@ section {
   text-align: center;
   padding: 20px;
   background-color: rgb(20, 20, 20);
-  font-size: 14px;
-  height: 80px;
+  font-size: clamp(12px, 1.5vw, 14px);
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 20px);
+  flex-wrap: wrap;
+}
+
 #footer img{
-  margin: 10px;
-  height: 40px;
+  height: clamp(30px, 4vw, 40px);
+  transition: all 0.3s ease;
 }
 #footer img:hover{
   box-shadow: 0px 0px 30px white;
+  transform: scale(1.1);
+}
+
+
+@media (max-width: 1024px) {
+  #nav-links {
+    gap: clamp(15px, 5vw, 60px);
+  }
+  
+  .section-content {
+    width: 95%;
+    gap: 30px;
+  }
+  
+  .text h1 {
+    font-size: clamp(1.5em, 4vw, 2.5em);
+  }
+  
+  .text h4 {
+    font-size: clamp(1em, 2.5vw, 1.5em);
+  }
+  
+  .text p {
+    font-size: clamp(0.9em, 2vw, 1.2em);
+  }
+}
+
+@media (max-width: 768px) {
+  #navbar {
+    height: auto;
+    min-height: 80px;
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  #logo-section {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  #nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .bar-options {
+    font-size: clamp(14px, 3vw, 20px);
+  }
+  
+  section {
+    padding: 140px 15px 30px;
+  }
+  
+  .section-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .section-content .text {
+    width: 100%;
+  }
+  
+  .section-content .image {
+    width: 100%;
+  }
+  
+  #maps .section-content {
+    flex-direction: column-reverse;
+  }
+  
+  .overlay-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #navbar {
+    padding: 10px 15px;
+  }
+  
+  #logo_name h5 {
+    font-size: clamp(14px, 4vw, 18px);
+  }
+  
+  #nav-links {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .bar-options {
+    font-size: 14px;
+  }
+  
+  section {
+    padding: 120px 10px 20px;
+  }
+  
+  .text {
+    font-size: 1em;
+  }
+  
+  .text h1 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+  
+  .text h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .text p {
+    font-size: 0.9em;
+    line-height: 1.5;
+  }
+  
+  .overlay-content h2 {
+    font-size: 20px;
+  }
+  
+  .overlay-content p {
+    font-size: 12px;
+  }
+  
+  #footer {
+    padding: 15px 10px;
+  }
+  
+  #footer p {
+    font-size: 11px;
+  }
+}
+
+
+@media (max-width: 360px) {
+  #navbar {
+    padding: 8px 10px;
+  }
+  
+  .bar-options {
+    font-size: 12px;
+  }
+  
+  .text h1 {
+    font-size: 1.5em;
+  }
+  
+  .text h4 {
+    font-size: 1em;
+  }
+  
+  .text p {
+    font-size: 0.85em;
+  }
 }
